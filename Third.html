@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Egg Table | Aesthetic Food Menu</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================================
+       AESTHETIC THEME TOKENS: MIDNIGHT ONYX & HONEY AMBER
+       ========================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-body: #090a0d;
+      --bg-surface: #12141a;
+      --bg-card: rgba(255, 255, 255, 0.035);
+      --bg-card-hover: rgba(255, 255, 255, 0.07);
+      
+      --accent-gold: #fbbf24;
+      --accent-honey: #f59e0b;
+      --accent-amber: #d97706;
+      --accent-glow: rgba(251, 191, 36, 0.18);
+      --accent-subtle: rgba(251, 191, 36, 0.1);
+
+      --text-main: #f8fafc;
+      --text-soft: #94a3b8;
+      --text-muted: #64748b;
+      
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-title: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Clean Mobile App View (480px) */
+    .menu-app {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--bg-surface);
+      min-height: 100vh;
+      padding-bottom: 110px;
+      position: relative;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Ambient Background Glow */
+    .ambient-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.18) 0%, rgba(18, 20, 26, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ==========================================================
+       AESTHETIC HEADER (CLEAN & BORDERLESS)
+       ========================================================== */
+    .hero-header {
+      position: relative;
+      z-index: 1;
+      padding: 30px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand-icon {
+      width: 62px;
+      height: 62px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f1115;
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+    }
+
+    .brand-title {
+      font-family: var(--font-title);
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .brand-title span {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tagline {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.2px;
+      margin-bottom: 14px;
+    }
+
+    /* Status & Quick Action Row */
+    .header-pills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #4ade80;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.3px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .call-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-subtle);
+      color: var(--accent-gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .call-pill:active {
+      transform: scale(0.95);
+      background: var(--accent-gold);
+      color: #0f1115;
+    }
+
+    /* ==========================================================
+       SEARCH BOX (BORDERLESS & MINIMAL)
+       ========================================================== */
+    .search-wrapper {
+      padding: 10px 20px 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-inner i {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: none;
+      outline: none;
+      padding: 12px 14px 12px 40px;
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    .search-input:focus {
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================
+       SMOOTH WORKING CATEGORY SCROLLER (PILLS NAV)
+       ========================================================== */
+    .category-sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(18, 20, 26, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 12px 20px;
+      margin-top: 10px;
+    }
+
+    .category-scroll-track {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .category-scroll-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .tab-pill i {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .tab-pill.active {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: #0f1115;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .tab-pill.active i {
+      opacity: 1;
+      color: #0f1115;
+    }
+
+    /* ==========================================================
+       MENU SECTIONS (CLEAN ROWS, ITEM NAME + PRICE ONLY)
+       ========================================================== */
+    .menu-container {
+      padding: 16px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-group {
+      margin-bottom: 28px;
+      scroll-margin-top: 75px;
+    }
+
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-left: 2px;
+    }
+
+    .group-icon {
+      font-size: 0.95rem;
+      color: var(--accent-gold);
+    }
+
+    .group-title {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.2px;
+    }
+
+    .items-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Aesthetic Menu Item Row */
+    .item-row {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .item-row:hover {
+      background: var(--bg-card-hover);
+      transform: translateX(2px);
+    }
+
+    .item-row:active {
+      transform: scale(0.985);
+    }
+
+    /* Left Element: Dish Icon Element + Name */
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Dish Element Badge (Minimalist Icon Badge instead of heavy photos) */
+    .dish-element {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: rgba(251, 191, 36, 0.08);
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .item-row:hover .dish-element {
+      background: var(--accent-gold);
+      color: #0f1115;
+    }
+
+    .dish-element.flame {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+    }
+    .item-row:hover .dish-element.flame {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .dish-element.tea {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+    }
+    .item-row:hover .dish-element.tea {
+      background: #10b981;
+      color: #0f1115;
+    }
+
+    .item-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.2px;
+    }
+
+    /* Right Element: Price Only */
+    .item-price {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      flex-shrink: 0;
+      letter-spacing: -0.2px;
+    }
+
+    /* No search match state */
+    .no-results-msg {
+      display: none;
+      text-align: center;
+      padding: 40px 10px;
+      color: var(--text-muted);
+    }
+
+    .no-results-msg i {
+      font-size: 2.2rem;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+
+    /* ==========================================================
+       STICKY BOTTOM FLOATING BAR
+       ========================================================== */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: rgba(18, 20, 26, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 12px 20px 16px;
+      z-index: 50;
+      display: flex;
+      gap: 12px;
+    }
+
+    .bar-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .bar-btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-call-bar {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    .btn-call-bar i {
+      color: var(--accent-gold);
+    }
+
+    .btn-whatsapp-bar {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="menu-app">
+    <!-- Ambient Top Glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- ==========================================================
+         AESTHETIC HEADER (NO HEAVY BORDERS)
+         ========================================================== -->
+    <header class="hero-header">
+      <div class="brand-icon">
+        <i class="fa-solid fa-egg"></i>
+      </div>
+      <h1 class="brand-title">The Egg <span>Table</span></h1>
+      <p class="brand-tagline">Street Delights & Fresh Griddle Delicacies</p>
+
+      <div class="header-pills">
+        <div class="status-live">
+          <span class="live-dot"></span>
+          <span>Open 5 PM – 11:30 PM</span>
+        </div>
+        <a href="tel:+919876543210" class="call-pill">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call Stall</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- ==========================================================
+         SEARCH BOX (MINIMAL)
+         ========================================================== -->
+    <div class="search-wrapper">
+      <div class="search-inner">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input 
+          type="text" 
+          id="itemSearch" 
+          class="search-input" 
+          placeholder="Search any egg item..."
+          autocomplete="off"
+        >
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         SMOOTH HORIZONTAL CATEGORY BAR (SCROLLER FIXED)
+         ========================================================== -->
+    <nav class="category-sticky-bar" aria-label="Menu Categories">
+      <div class="category-scroll-track" id="categoryScroller">
+        <button type="button" class="tab-pill active" data-target="omelettes">
+          <i class="fa-solid fa-fire-burner"></i> Omelettes
+        </button>
+        <button type="button" class="tab-pill" data-target="starters">
+          <i class="fa-solid fa-fire"></i> Starters
+        </button>
+        <button type="button" class="tab-pill" data-target="gravies">
+          <i class="fa-solid fa-bowl-food"></i> Special Gravies
+        </button>
+        <button type="button" class="tab-pill" data-target="breads">
+          <i class="fa-solid fa-bread-slice"></i> Breads & Extras
+        </button>
+        <button type="button" class="tab-pill" data-target="beverages">
+          <i class="fa-solid fa-mug-hot"></i> Beverages
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==========================================================
+         MENU LIST (ITEM NAME & PRICE ONLY + DISH ELEMENT BADGE)
+         ========================================================== -->
+    <section class="menu-container" id="menuContainer">
+
+      <!-- CATEGORY 1: OMELETTES -->
+      <div class="menu-group" id="omelettes">
+        <div class="group-header">
+          <i class="fa-solid fa-fire-burner group-icon"></i>
+          <h2 class="group-title">Loaded Omelettes</h2>
+        </div>
+        <div class="items-stack">
+          <div class="item-row" data-name="Cheese Burst Masala Omelette">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-cheese"></i></div>
+              <span class="item-name">Cheese Burst Masala Omelette</span>
+            </div>
+            <span class="item-price">₹110</span>
+          </div>
+
+          <div class="item-row" data-name="Spicy Masala Tadka Omelette">
+            <div class="item-left">
+              <div class="dish-element flame"><i class="fa-solid fa-pepper-hot"></i></div>
+              <span class="item-name">Spicy Masala Tadka Omelette</span>
+            </div>
+            <span class="item-price">₹80</span>
+          </div>
+
+          <div class="item-row" data-name="Spanish Herb & Olive Omelette">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-leaf"></i></div>
+              <span class="item-name">Spanish Herb & Olive Omelette</span>
+            </div>
+            <span class="item-price">₹130</span>
+          </div>
+
+          <div class="item-row" data-name="Sunny Side Up (Double Half Fry)">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-egg"></i></div>
+              <span class="item-name">Sunny Side Up (Double Half Fry)</span>
+            </div>
+            <span class="item-price">₹70</span>
+          </div>
+
+          <div class="item-row" data-name="Paneer Volcano Omelette">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-volcano"></i></div>
+              <span class="item-name">Paneer Volcano Omelette</span>
+            </div>
+            <span class="item-price">₹140</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY 2: STARTERS -->
+      <div class="menu-group" id="starters">
+        <div class="group-header">
+          <i class="fa-solid fa-fire group-icon"></i>
+          <h2 class="group-title">Egg Starters</h2>
+        </div>
+        <div class="items-stack">
+          <div class="item-row" data-name="Crispy Egg 65">
+            <div class="item-left">
+              <div class="dish-element flame"><i class="fa-solid fa-fire-flame-curved"></i></div>
+              <span class="item-name">Crispy Egg 65</span>
+            </div>
+            <span class="item-price">₹120</span>
+          </div>
+
+          <div class="item-row" data-name="Tawa Boiled Egg Masala Fry">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-utensils"></i></div>
+              <span class="item-name">Tawa Boiled Egg Masala Fry</span>
+            </div>
+            <span class="item-price">₹90</span>
+          </div>
+
+          <div class="item-row" data-name="Egg Koliwada Bites">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-cubes-stacked"></i></div>
+              <span class="item-name">Egg Koliwada Bites</span>
+            </div>
+            <span class="item-price">₹110</span>
+          </div>
+
+          <div class="item-row" data-name="Kolkata Double Egg Kathi Roll">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-scroll"></i></div>
+              <span class="item-name">Kolkata Double Egg Kathi Roll</span>
+            </div>
+            <span class="item-price">₹95</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY 3: SPECIAL GRAVIES -->
+      <div class="menu-group" id="gravies">
+        <div class="group-header">
+          <i class="fa-solid fa-bowl-food group-icon"></i>
+          <h2 class="group-title">Special Egg Gravies</h2>
+        </div>
+        <div class="items-stack">
+          <div class="item-row" data-name="Authentic Surti Egg Ghotala">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-crown"></i></div>
+              <span class="item-name">Authentic Surti Egg Ghotala</span>
+            </div>
+            <span class="item-price">₹160</span>
+          </div>
+
+          <div class="item-row" data-name="Spicy Egg Kheema Masala">
+            <div class="item-left">
+              <div class="dish-element flame"><i class="fa-solid fa-spoon"></i></div>
+              <span class="item-name">Spicy Egg Kheema Masala</span>
+            </div>
+            <span class="item-price">₹130</span>
+          </div>
+
+          <div class="item-row" data-name="Mughlai Egg Lapeta Gravy">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-layer-group"></i></div>
+              <span class="item-name">Mughlai Egg Lapeta Gravy</span>
+            </div>
+            <span class="item-price">₹175</span>
+          </div>
+
+          <div class="item-row" data-name="Dhaba Style Butter Egg Curry">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-bowl-rice"></i></div>
+              <span class="item-name">Dhaba Style Butter Egg Curry</span>
+            </div>
+            <span class="item-price">₹140</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY 4: BREADS & EXTRAS -->
+      <div class="menu-group" id="breads">
+        <div class="group-header">
+          <i class="fa-solid fa-bread-slice group-icon"></i>
+          <h2 class="group-title">Breads & Extras</h2>
+        </div>
+        <div class="items-stack">
+          <div class="item-row" data-name="Amul Butter Toasted Pav (Pair)">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-bread-slice"></i></div>
+              <span class="item-name">Amul Butter Toasted Pav (Pair)</span>
+            </div>
+            <span class="item-price">₹25</span>
+          </div>
+
+          <div class="item-row" data-name="Cheese Garlic Butter Pav (Pair)">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-cheese"></i></div>
+              <span class="item-name">Cheese Garlic Butter Pav (Pair)</span>
+            </div>
+            <span class="item-price">₹50</span>
+          </div>
+
+          <div class="item-row" data-name="Simple Masala Boiled Eggs">
+            <div class="item-left">
+              <div class="dish-element"><i class="fa-solid fa-egg"></i></div>
+              <span class="item-name">Simple Masala Boiled Eggs</span>
+            </div>
+            <span class="item-price">₹40</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORY 5: BEVERAGES -->
+      <div class="menu-group" id="beverages">
+        <div class="group-header">
+          <i class="fa-solid fa-mug-hot group-icon"></i>
+          <h2 class="group-title">Beverages</h2>
+        </div>
+        <div class="items-stack">
+          <div class="item-row" data-name="Special Kadak Masala Chai">
+            <div class="item-left">
+              <div class="dish-element tea"><i class="fa-solid fa-mug-hot"></i></div>
+              <span class="item-name">Special Kadak Masala Chai</span>
+            </div>
+            <span class="item-price">₹20</span>
+          </div>
+
+          <div class="item-row" data-name="Chilled Masala Buttermilk">
+            <div class="item-left">
+              <div class="dish-element tea"><i class="fa-solid fa-glass-water"></i></div>
+              <span class="item-name">Chilled Masala Buttermilk</span>
+            </div>
+            <span class="item-price">₹30</span>
+          </div>
+
+          <div class="item-row" data-name="Cold Soft Drink Can">
+            <div class="item-left">
+              <div class="dish-element tea"><i class="fa-solid fa-bottle-water"></i></div>
+              <span class="item-name">Cold Soft Drink Can</span>
+            </div>
+            <span class="item-price">₹40</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- No items found search alert -->
+      <div class="no-results-msg" id="noResultsMsg">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <p>No egg dishes matched your search.</p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================
+         STICKY BOTTOM FLOATING ACTIONS
+         ========================================================== -->
+    <div class="bottom-bar">
+      <a href="tel:+919876543210" class="bar-btn btn-call-bar">
+        <i class="fa-solid fa-phone"></i>
+        <span>Call Stall</span>
+      </a>
+      <a 
+        href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20place%20an%20order." 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="bar-btn btn-whatsapp-bar"
+      >
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>WhatsApp Order</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================
+       JAVASCRIPT: WORKING SCROLLER & SMOOTH FILTER
+       ========================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('itemSearch');
+      const itemRows = document.querySelectorAll('.item-row');
+      const menuGroups = document.querySelectorAll('.menu-group');
+      const noResults = document.getElementById('noResultsMsg');
+      const tabPills = document.querySelectorAll('.tab-pill');
+      const scrollerTrack = document.getElementById('categoryScroller');
+
+      // 1. Working Category Scroller Click Action
+      tabPills.forEach(pill => {
+        pill.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = pill.getAttribute('data-target');
+          const targetEl = document.getElementById(targetId);
+
+          tabPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+
+          // Ensure the clicked pill scrolls smoothly into view in horizontal track
+          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+      // 2. Active ScrollSpy on Page Scroll
+      let isScrollingTimer;
+      window.addEventListener('scroll', () => {
+        let currentTarget = '';
+        menuGroups.forEach(group => {
+          const groupTop = group.offsetTop - 110;
+          if (window.scrollY >= groupTop) {
+            currentTarget = group.getAttribute('id');
+          }
+        });
+
+        if (currentTarget) {
+          tabPills.forEach(pill => {
+            if (pill.getAttribute('data-target') === currentTarget) {
+              pill.classList.add('active');
+              pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            } else {
+              pill.classList.remove('active');
+            }
+          });
+        }
+      }, { passive: true });
+
+      // 3. Instant Search Filter
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let totalVisible = 0;
+
+        menuGroups.forEach(group => {
+          let visibleInGroup = 0;
+          const rows = group.querySelectorAll('.item-row');
+
+          rows.forEach(row => {
+            const name = row.getAttribute('data-name').toLowerCase();
+            if (name.includes(query)) {
+              row.style.display = 'flex';
+              visibleInGroup++;
+              totalVisible++;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+
+          if (visibleInGroup === 0 && query !== '') {
+            group.style.display = 'none';
+          } else {
+            group.style.display = 'block';
+          }
+        });
+
+        if (totalVisible === 0 && query !== '') {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

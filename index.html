@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Egg Corner | Menu</title>
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Reset & Tokens */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-body: #0d0d0d;
+      --bg-container: #181818;
+      --bg-card: #222222;
+      --bg-card-hover: #292929;
+      --accent-yellow: #FFC107;
+      --text-white: #ffffff;
+      --text-muted: #a0a0a0;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --font-main: 'Poppins', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-body);
+      color: var(--text-white);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile Container: Max 480px Centered */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--bg-container);
+      min-height: 100vh;
+      padding: 24px 18px 40px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+    }
+
+    /* ==========================================================
+       SECTION 1: HEADER ONLY (Minimal & Impactful)
+       ========================================================== */
+    .header-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 10px 0 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 24px;
+    }
+
+    /* Round Logo */
+    .logo-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #121212;
+      font-size: 2rem;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(255, 193, 7, 0.35);
+      border: 3px solid #ffffff;
+    }
+
+    /* Stall Name & Subtitle */
+    .stall-name {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text-white);
+      line-height: 1.2;
+    }
+
+    .stall-name span {
+      color: var(--accent-yellow);
+    }
+
+    .stall-subtitle {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 4px;
+      margin-bottom: 14px;
+    }
+
+    /* Contact Phone Quick-Click Button */
+    .btn-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255, 193, 7, 0.12);
+      border: 1px solid rgba(255, 193, 7, 0.4);
+      color: var(--accent-yellow);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-call:hover, .btn-call:active {
+      background: var(--accent-yellow);
+      color: #121212;
+      transform: scale(0.98);
+      box-shadow: 0 4px 14px rgba(255, 193, 7, 0.3);
+    }
+
+    .btn-call i {
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================================
+       SECTION 2: MENU CARDS (Minimal, High-Contrast)
+       ========================================================== */
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .menu-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-card:active {
+      transform: scale(0.98);
+    }
+
+    .menu-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 193, 7, 0.25);
+    }
+
+    /* Sharp Food Photo */
+    .card-photo-wrap {
+      width: 86px;
+      height: 86px;
+      flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #121212;
+    }
+
+    .card-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-card:hover .card-photo {
+      transform: scale(1.08);
+    }
+
+    /* Item Details: Name & Price ONLY */
+    .card-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .item-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    .item-price {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--accent-yellow);
+      letter-spacing: -0.3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Container (Max-Width 480px Centered) -->
+  <main class="app-container">
+
+    <!-- ==========================================================
+         SECTION 1: HEADER ONLY
+         ========================================================== -->
+    <header class="header-section">
+      <!-- Round Stall Logo -->
+      <div class="logo-icon">
+        <i class="fa-solid fa-egg"></i>
+      </div>
+
+      <!-- Stall Name & Short Subtitle -->
+      <h1 class="stall-name">The Egg <span>Corner</span></h1>
+      <p class="stall-subtitle">Hot & Fresh Street Delights</p>
+
+      <!-- Phone Number with Click-to-Call -->
+      <a href="tel:+919876543210" class="btn-call">
+        <i class="fa-solid fa-phone"></i>
+        <span>+91 98765 43210</span>
+      </a>
+    </header>
+
+    <!-- ==========================================================
+         SECTION 2: MENU CARDS (Image + Bold Name + Big Yellow Price ONLY)
+         ========================================================== -->
+    <section class="menu-list" aria-label="Menu Items">
+
+      <!-- Item 1 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80" 
+            alt="Cheese Masala Omelette" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Cheese Masala Omelette</h2>
+          <span class="item-price">₹110</span>
+        </div>
+      </article>
+
+      <!-- Item 2 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=300&q=80" 
+            alt="Surti Egg Ghotala" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Surti Egg Ghotala</h2>
+          <span class="item-price">₹160</span>
+        </div>
+      </article>
+
+      <!-- Item 3 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=300&q=80" 
+            alt="Double Egg Kathi Roll" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Double Egg Kathi Roll</h2>
+          <span class="item-price">₹95</span>
+        </div>
+      </article>
+
+      <!-- Item 4 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" 
+            alt="Spicy Egg Kheema" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Spicy Egg Kheema</h2>
+          <span class="item-price">₹130</span>
+        </div>
+      </article>
+
+      <!-- Item 5 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=300&q=80" 
+            alt="Crispy Egg 65" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Crispy Egg 65</h2>
+          <span class="item-price">₹120</span>
+        </div>
+      </article>
+
+      <!-- Item 6 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?auto=format&fit=crop&w=300&q=80" 
+            alt="Sunny Side Up (Double)" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Sunny Side Up (Double)</h2>
+          <span class="item-price">₹70</span>
+        </div>
+      </article>
+
+      <!-- Item 7 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=300&q=80" 
+            alt="Tawa Boiled Egg Fry" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Tawa Boiled Egg Fry</h2>
+          <span class="item-price">₹90</span>
+        </div>
+      </article>
+
+      <!-- Item 8 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" 
+            alt="Dhaba Butter Egg Curry" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Dhaba Butter Egg Curry</h2>
+          <span class="item-price">₹140</span>
+        </div>
+      </article>
+
+      <!-- Item 9 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" 
+            alt="Butter Toasted Pav (Pair)" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Butter Toasted Pav (Pair)</h2>
+          <span class="item-price">₹25</span>
+        </div>
+      </article>
+
+      <!-- Item 10 -->
+      <article class="menu-card">
+        <div class="card-photo-wrap">
+          <img 
+            src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=300&q=80" 
+            alt="Special Masala Chai" 
+            class="card-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="card-info">
+          <h2 class="item-name">Special Masala Chai</h2>
+          <span class="item-price">₹20</span>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

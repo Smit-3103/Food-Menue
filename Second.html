@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Egg Junction | Hot & Fresh Street Delights</title>
+  <meta name="description" content="Authentic street-style egg delicacies, loaded cheese omelettes, surti ghotala, egg curries and sizzling starters. View our full menu and order directly!">
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================================
+       CSS RESET & DESIGN TOKENS
+       ========================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-main: #121212;
+      --bg-card: #1e1e1e;
+      --bg-card-hover: #262626;
+      --bg-surface: #181818;
+      --bg-chip: #2c2c2c;
+      --bg-chip-active: #ffc107;
+      
+      --accent-yellow: #ffc107;
+      --accent-amber: #ff9800;
+      --accent-orange: #ff5722;
+      --accent-green: #00e676;
+      --accent-red: #ff3d00;
+      --egg-badge-border: #b71c1c;
+      --egg-badge-dot: #b71c1c;
+
+      --text-white: #ffffff;
+      --text-gray-100: #f5f5f5;
+      --text-gray-300: #d1d5db;
+      --text-gray-400: #9ca3af;
+      --text-gray-500: #6b7280;
+      --text-dark: #121212;
+
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+      --shadow-md: 0 6px 16px rgba(0,0,0,0.45);
+      --shadow-glow: 0 4px 20px rgba(255, 193, 7, 0.25);
+      --shadow-bottom-bar: 0 -4px 24px rgba(0,0,0,0.7);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+
+      --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Container lock: Max 480px Mobile App View */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background-color: var(--bg-main);
+      position: relative;
+      padding-bottom: 120px; /* Space for floating bottom bar */
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================
+       HERO & HEADER
+       ========================================================== */
+    .hero-banner {
+      position: relative;
+      background: linear-gradient(180deg, rgba(30,30,30,0.7) 0%, #121212 100%),
+                  radial-gradient(circle at top right, rgba(255,193,7,0.15), transparent 70%);
+      padding: 24px 18px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .top-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 230, 118, 0.12);
+      border: 1px solid rgba(0, 230, 118, 0.4);
+      color: var(--accent-green);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 0 rgba(0, 230, 118, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 7px rgba(0, 230, 118, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 230, 118, 0);
+      }
+    }
+
+    .hygiene-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      color: var(--text-gray-300);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-weight: 500;
+    }
+
+    .hygiene-badge i {
+      color: var(--accent-yellow);
+    }
+
+    /* Stall Identity Header */
+    .stall-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .logo-container {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .logo-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffc107 0%, #ff5722 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+      border: 2px solid #fff;
+    }
+
+    .logo-avatar i {
+      font-size: 2rem;
+      color: #121212;
+    }
+
+    .logo-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -4px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-yellow);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--accent-yellow);
+    }
+
+    .stall-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .stall-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: 3px;
+    }
+
+    .stall-title span {
+      color: var(--accent-yellow);
+    }
+
+    .stall-tagline {
+      font-size: 0.78rem;
+      color: var(--text-gray-400);
+      font-weight: 400;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stall-meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      color: var(--text-gray-300);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .meta-chip.rating {
+      background: #2e7d32;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .meta-chip.rating i {
+      font-size: 0.65rem;
+    }
+
+    /* ==========================================================
+       ADDRESS & LOCATION SECTION
+       ========================================================== */
+    .location-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .location-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .loc-icon-box {
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 193, 7, 0.12);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-yellow);
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .loc-text h4 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 2px;
+    }
+
+    .loc-text p {
+      font-size: 0.72rem;
+      color: var(--text-gray-400);
+      line-height: 1.35;
+    }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #ffc107, #ff9800);
+      color: #121212;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+      flex-shrink: 0;
+    }
+
+    .btn-maps:active {
+      transform: scale(0.95);
+    }
+
+    /* ==========================================================
+       SEARCH & QUICK STATS
+       ========================================================== */
+    .search-filter-section {
+      padding: 14px 18px 6px;
+    }
+
+    .search-box {
+      position: relative;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box i.search-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-gray-500);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 11px 40px 11px 38px;
+      color: var(--text-white);
+      font-family: var(--font-family);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-yellow);
+      box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-gray-500);
+      font-size: 0.8rem;
+    }
+
+    .btn-clear-search {
+      position: absolute;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-gray-400);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .btn-clear-search:hover {
+      color: var(--accent-yellow);
+    }
+
+    .search-status-bar {
+      display: none;
+      font-size: 0.72rem;
+      color: var(--accent-yellow);
+      padding: 0 4px 6px;
+      font-weight: 600;
+    }
+
+    /* ==========================================================
+       STICKY CATEGORY NAV (SMOOTH WORKING SCROLLER)
+       ========================================================== */
+    .category-nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(18, 18, 18, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 8px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 4px;
+    }
+
+    .category-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE */
+      padding: 4px 0;
+    }
+
+    .category-pills::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-chip);
+      color: var(--text-gray-300);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .cat-pill.active {
+      background: var(--accent-yellow);
+      color: #121212;
+      font-weight: 700;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .cat-pill:hover:not(.active) {
+      background: #383838;
+      color: #fff;
+    }
+
+    /* ==========================================================
+       MENU SECTIONS & CARDS
+       ========================================================== */
+    .menu-content {
+      padding: 12px 16px;
+    }
+
+    .category-group {
+      margin-bottom: 26px;
+      scroll-margin-top: 65px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cat-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-icon {
+      font-size: 1.1rem;
+      color: var(--accent-yellow);
+    }
+
+    .category-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-white);
+      letter-spacing: -0.2px;
+    }
+
+    .cat-count {
+      font-size: 0.7rem;
+      color: var(--text-gray-500);
+      font-weight: 500;
+    }
+
+    /* Food Item Card */
+    .item-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      position: relative;
+    }
+
+    .item-card:active {
+      transform: scale(0.99);
+    }
+
+    .item-card:hover {
+      border-color: rgba(255, 193, 7, 0.3);
+      background-color: var(--bg-card-hover);
+    }
+
+    /* Left Details */
+    .item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .item-tags-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* Non-Veg / Egg Symbol Badge */
+    .egg-veg-indicator {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--egg-badge-border);
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      flex-shrink: 0;
+    }
+
+    .egg-veg-indicator .egg-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--egg-badge-dot);
+    }
+
+    .veg-indicator {
+      border-color: #2e7d32;
+    }
+    .veg-indicator .veg-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #2e7d32;
+    }
+
+    .tag-bestseller {
+      background: rgba(255, 193, 7, 0.15);
+      color: var(--accent-yellow);
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    .tag-spicy {
+      background: rgba(255, 61, 0, 0.15);
+      color: #ff5722;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .tag-chef {
+      background: rgba(156, 39, 176, 0.15);
+      color: #ce93d8;
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 3px;
+      line-height: 1.25;
+    }
+
+    .item-description {
+      font-size: 0.72rem;
+      color: var(--text-gray-400);
+      line-height: 1.35;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .item-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    .price-current {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent-yellow);
+    }
+
+    .price-strike {
+      font-size: 0.75rem;
+      color: var(--text-gray-500);
+      text-decoration: line-through;
+    }
+
+    .portion-badge {
+      font-size: 0.65rem;
+      color: var(--text-gray-400);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Right Thumbnail & Action */
+    .item-media {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #2a2a2a;
+    }
+
+    .item-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .item-card:hover .item-image {
+      transform: scale(1.06);
+    }
+
+    .item-order-hint {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: rgba(18, 18, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      padding: 2px 6px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* No search results state */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-gray-400);
+    }
+
+    .no-results i {
+      font-size: 2.5rem;
+      color: var(--accent-yellow);
+      margin-bottom: 10px;
+    }
+
+    /* ==========================================================
+       SPECIAL COMBO BANNER
+       ========================================================== */
+    .special-offer-card {
+      margin: 4px 16px 20px;
+      background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3);
+    }
+
+    .offer-text h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+      letter-spacing: -0.2px;
+    }
+
+    .offer-text p {
+      font-size: 0.72rem;
+      opacity: 0.92;
+    }
+
+    .offer-badge {
+      background: #121212;
+      color: var(--accent-yellow);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+
+    .offer-badge small {
+      display: block;
+      font-size: 0.55rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* ==========================================================
+       STALL INFO / POLICY FOOTER SECTION
+       ========================================================== */
+    .stall-footer-info {
+      padding: 16px 20px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 10px;
+    }
+
+    .timing-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin-bottom: 14px;
+      border: 1px dashed rgba(255, 193, 7, 0.3);
+    }
+
+    .timing-card h5 {
+      font-size: 0.78rem;
+      color: var(--accent-yellow);
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timing-card p {
+      font-size: 0.75rem;
+      color: var(--text-gray-300);
+    }
+
+    .footer-note {
+      font-size: 0.68rem;
+      color: var(--text-gray-500);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================
+       STICKY FLOATING MOBILE ACTION FOOTER
+       ========================================================== */
+    .sticky-action-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: rgba(24, 24, 24, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px 12px;
+      z-index: 100;
+      box-shadow: var(--shadow-bottom-bar);
+    }
+
+    .timing-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.68rem;
+      color: var(--text-gray-400);
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+
+    .timing-strip span i {
+      color: var(--accent-yellow);
+      margin-right: 4px;
+    }
+
+    .action-buttons-group {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 10px;
+    }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 12px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.2s ease;
+      text-align: center;
+    }
+
+    .btn-action:active {
+      transform: scale(0.97);
+    }
+
+    .btn-call {
+      background: #2a2a2a;
+      color: var(--text-white);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-call i {
+      color: var(--accent-yellow);
+      font-size: 0.95rem;
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp i {
+      font-size: 1.1rem;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #333;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--accent-yellow);
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main 480px App-View Viewport -->
+  <main class="app-container" id="menuApp">
+    
+    <!-- ==========================================================
+         TOP HEADER & HERO IDENTITY
+         ========================================================== -->
+    <header class="hero-banner">
+      <!-- Status Badge Row -->
+      <div class="top-badge-row">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          <span>Open Now</span>
+        </div>
+        <div class="hygiene-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>100% Fresh Farm Eggs</span>
+        </div>
+      </div>
+
+      <!-- Stall Brand & Identity -->
+      <div class="stall-identity">
+        <div class="logo-container">
+          <div class="logo-avatar">
+            <i class="fa-solid fa-egg"></i>
+          </div>
+          <div class="logo-badge">
+            <i class="fa-solid fa-fire-burner"></i>
+          </div>
+        </div>
+
+        <div class="stall-details">
+          <h1 class="stall-title">The Egg <span>Junction</span></h1>
+          <p class="stall-tagline">Street Delights • Surti Ghotala • Loaded Omelettes</p>
+          <div class="stall-meta-tags">
+            <span class="meta-chip rating">
+              <i class="fa-solid fa-star"></i> 4.8
+            </span>
+            <span class="meta-chip">
+              <i class="fa-solid fa-clock"></i> 5:00 PM – 11:30 PM
+            </span>
+            <span class="meta-chip">
+              <i class="fa-solid fa-indian-rupee-sign"></i> Budget Friendly
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location & Maps Card -->
+      <div class="location-card">
+        <div class="location-info">
+          <div class="loc-icon-box">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="loc-text">
+            <h4>Opp. Metro Pillar 142, Food Street</h4>
+            <p>Near City Center Circle, MG Road Market</p>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Egg+Food+Stall+Street" target="_blank" rel="noopener noreferrer" class="btn-maps">
+          <i class="fa-solid fa-diamond-turn-right"></i> Maps
+        </a>
+      </div>
+    </header>
+
+    <!-- ==========================================================
+         SEARCH BAR (WITH JS CLEAR & STATUS)
+         ========================================================== -->
+    <section class="search-filter-section">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input 
+          type="text" 
+          id="menuSearch" 
+          class="search-input" 
+          placeholder="Search omelette, ghotala, egg fry..."
+          autocomplete="off"
+        >
+        <button type="button" class="btn-clear-search" id="btnClearSearch" aria-label="Clear Search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="search-status-bar" id="searchStatus"></div>
+    </section>
+
+    <!-- ==========================================================
+         SPECIAL COMBO OFFER BANNER
+         ========================================================== -->
+    <div class="special-offer-card" id="specialOffer">
+      <div class="offer-text">
+        <h4>⚡ Chef's Special Egg Fest Combo</h4>
+        <p>1 Cheese Ghotala + 2 Butter Pav + 1 Cold Drink</p>
+      </div>
+      <div class="offer-badge">
+        ₹199
+        <small>SAVE ₹40</small>
+      </div>
+    </div>
+
+    <!-- ==========================================================
+         STICKY HORIZONTAL CATEGORY PILLS (WORKING SCROLLER)
+         ========================================================== -->
+    <nav class="category-nav-wrapper" id="categoryNavWrapper" aria-label="Menu Categories">
+      <div class="category-pills" id="categoryPills">
+        <button type="button" class="cat-pill active" data-target="omelettes">
+          <i class="fa-solid fa-plate-wheat"></i> Omelettes
+        </button>
+        <button type="button" class="cat-pill" data-target="starters">
+          <i class="fa-solid fa-fire"></i> Egg Starters
+        </button>
+        <button type="button" class="cat-pill" data-target="gravies">
+          <i class="fa-solid fa-bowl-rice"></i> Special Gravies
+        </button>
+        <button type="button" class="cat-pill" data-target="bites">
+          <i class="fa-solid fa-bread-slice"></i> Quick Bites
+        </button>
+        <button type="button" class="cat-pill" data-target="beverages">
+          <i class="fa-solid fa-mug-hot"></i> Beverages
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==========================================================
+         MENU ITEMS LIST
+         ========================================================== -->
+    <section class="menu-content" id="menuContent">
+
+      <!-- CATEGORY 1: OMELETTES -->
+      <div class="category-group" id="omelettes">
+        <div class="category-header">
+          <div class="cat-title-wrap">
+            <i class="fa-solid fa-utensils cat-icon"></i>
+            <h2 class="category-title">Loaded Omelettes</h2>
+          </div>
+          <span class="cat-count">5 items</span>
+        </div>
+
+        <!-- Item 1 -->
+        <article class="item-card" data-title="Cheese Burst Masala Omelette" data-desc="Double egg loaded with chopped veggies, molten amul cheese blend and secret street spice mix served with 2 butter toasted pav.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator" title="Non-Veg Egg"><span class="egg-dot"></span></span>
+                <span class="tag-bestseller">⭐ Bestseller</span>
+              </div>
+              <h3 class="item-title">Cheese Burst Masala Omelette</h3>
+              <p class="item-description">Double egg loaded with chopped veggies, molten amul cheese blend & secret street spices. Served with 2 butter pav.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹110</span>
+              <span class="price-strike">₹130</span>
+              <span class="portion-badge">2 Eggs + 2 Pav</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80" 
+              alt="Cheese Burst Masala Omelette" 
+              class="item-image"
+              loading="lazy"
+            >
+            <div class="item-order-hint"><i class="fa-solid fa-heart"></i> Top Pick</div>
+          </div>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="item-card" data-title="Spicy Masala Tadka Omelette" data-desc="Fresh farm eggs beaten with fiery green chillies, caramelized onions, fresh coriander, and desi ghee tadka.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-spicy"><i class="fa-solid fa-pepper-hot"></i> Spicy</span>
+              </div>
+              <h3 class="item-title">Spicy Masala Tadka Omelette</h3>
+              <p class="item-description">Beaten eggs with fiery green chillies, caramelized onions, fresh coriander & aromatic desi ghee tadka.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹80</span>
+              <span class="portion-badge">2 Eggs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=300&q=80" 
+              alt="Spicy Masala Tadka Omelette" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="item-card" data-title="Spanish Herb & Olive Omelette" data-desc="Fluffy 3-egg omelette pan-cooked with bell peppers, sweet corn, black olives, oregano, and melted mozzarella.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-chef">Chef's Choice</span>
+              </div>
+              <h3 class="item-title">Spanish Herb & Olive Omelette</h3>
+              <p class="item-description">Fluffy 3-egg omelette pan-cooked with tri-color peppers, olives, oregano & mozzarella cheese pull.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹130</span>
+              <span class="portion-badge">3 Eggs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=300&q=80" 
+              alt="Spanish Herb & Olive Omelette" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="item-card" data-title="Sunny Side Up Half Fry" data-desc="Golden runny yolks seasoned with black pepper, rock salt, and toasted butter pav on the side.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Sunny Side Up (Double Half Fry)</h3>
+              <p class="item-description">Two perfectly cooked runny sunny yolks seasoned with cracked pepper, rock salt & butter toasted pav.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹70</span>
+              <span class="portion-badge">2 Eggs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?auto=format&fit=crop&w=300&q=80" 
+              alt="Sunny Side Up Half Fry" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="item-card" data-title="Paneer & Egg Volcano Omelette" data-desc="Shredded spiced paneer folded inside double beaten egg with peri-peri drizzle and extra butter layer.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-bestseller">Must Try</span>
+              </div>
+              <h3 class="item-title">Paneer & Egg Volcano Omelette</h3>
+              <p class="item-description">Rich grated malai paneer stuffed inside double beaten egg, topped with peri-peri glaze & Amul butter.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹140</span>
+              <span class="portion-badge">2 Eggs + 50g Paneer</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80" 
+              alt="Paneer & Egg Volcano Omelette" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+      </div>
+
+      <!-- CATEGORY 2: EGG STARTERS -->
+      <div class="category-group" id="starters">
+        <div class="category-header">
+          <div class="cat-title-wrap">
+            <i class="fa-solid fa-fire-flame-curved cat-icon"></i>
+            <h2 class="category-title">Egg Starters & Crispy Bites</h2>
+          </div>
+          <span class="cat-count">4 items</span>
+        </div>
+
+        <!-- Item 6 -->
+        <article class="item-card" data-title="Crispy Egg 65" data-desc="Deep fried boiled egg cubes coated in spicy Andhra-style curd marination, curry leaves, and green chillies.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-spicy"><i class="fa-solid fa-pepper-hot"></i> Fiery</span>
+              </div>
+              <h3 class="item-title">Crispy Egg 65</h3>
+              <p class="item-description">Batter-crisped egg bites tossed in Andhra spice curd reduction, crunchy curry leaves & roasted garlic.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹120</span>
+              <span class="portion-badge">3 Eggs (6 Pcs)</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=300&q=80" 
+              alt="Crispy Egg 65" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 7 -->
+        <article class="item-card" data-title="Tawa Boiled Egg Masala Fry" data-desc="Sliced boiled eggs shallow fried on cast iron tawa with crushed garlic, onions, tomato reduction, and chaat masala.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-bestseller">Popular</span>
+              </div>
+              <h3 class="item-title">Tawa Boiled Egg Masala Fry</h3>
+              <p class="item-description">Cast iron sizzled boiled egg slices with onion-tomato paste, crushed black pepper & lemon squeeze.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹90</span>
+              <span class="portion-badge">3 Eggs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=300&q=80" 
+              alt="Tawa Boiled Egg Masala Fry" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 8 -->
+        <article class="item-card" data-title="Egg Koliwada Bites" data-desc="Mumbai street style batter coated egg chunks spiced with red chilli powder, carom seeds, and mint chutney.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Egg Koliwada Bites</h3>
+              <p class="item-description">Mumbai street-style spiced crispy coated egg wedges served with spicy red chutney & pickled onions.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹110</span>
+              <span class="portion-badge">8 Pieces</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80" 
+              alt="Egg Koliwada Bites" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 9 -->
+        <article class="item-card" data-title="Loaded Egg Roll (Double Egg)" data-desc="Flaky paratha layered with 2 eggs, spiced cabbage slaw, pickled green chillies, and signature mint mayonnaise.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-bestseller">Street Classic</span>
+              </div>
+              <h3 class="item-title">Kolkata Double Egg Kathi Roll</h3>
+              <p class="item-description">Flaky pan-fried paratha lined with 2 eggs, crunchy spiced onions, tangy tamarind drizzle & mint mayo.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹95</span>
+              <span class="price-strike">₹110</span>
+              <span class="portion-badge">1 Jumbo Roll</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=300&q=80" 
+              alt="Kolkata Double Egg Kathi Roll" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+      </div>
+
+      <!-- CATEGORY 3: SPECIAL GRAVIES -->
+      <div class="category-group" id="gravies">
+        <div class="category-header">
+          <div class="cat-title-wrap">
+            <i class="fa-solid fa-bowl-food cat-icon"></i>
+            <h2 class="category-title">Special Egg Gravies</h2>
+          </div>
+          <span class="cat-count">4 items</span>
+        </div>
+
+        <!-- Item 10 -->
+        <article class="item-card" data-title="Authentic Surti Egg Ghotala" data-desc="World famous Surat specialty! Minced boiled eggs cooked in spicy onion-tomato gravy, topped with sunny half fry and cheese.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-bestseller">👑 Stall Specialty</span>
+              </div>
+              <h3 class="item-title">Authentic Surti Egg Ghotala</h3>
+              <p class="item-description">Minced boiled egg simmered in rich buttery gravy, crowned with 1 sunny half fry & cheese. Served with 2 pav.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹160</span>
+              <span class="price-strike">₹180</span>
+              <span class="portion-badge">3 Eggs + 2 Pav</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=300&q=80" 
+              alt="Authentic Surti Egg Ghotala" 
+              class="item-image"
+              loading="lazy"
+            >
+            <div class="item-order-hint"><i class="fa-solid fa-crown"></i> Signature</div>
+          </div>
+        </article>
+
+        <!-- Item 11 -->
+        <article class="item-card" data-title="Egg Kheema Masala" data-desc="Finely grated boiled eggs tossed with green peas, rich brown gravy, roasted garam masala and generous dollop of butter.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Spicy Egg Kheema Masala</h3>
+              <p class="item-description">Fine grated boiled eggs with green peas in a spicy caramelized onion-garlic bhuna masala gravy.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹130</span>
+              <span class="portion-badge">2 Eggs + 2 Pav</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" 
+              alt="Spicy Egg Kheema Masala" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 12 -->
+        <article class="item-card" data-title="Mughlai Egg Lapeta Gravy" data-desc="Boiled eggs wrapped inside a spicy omelette sheet and submerged in a royal cashew-onion Mughlai gravy.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+                <span class="tag-chef">Royal Special</span>
+              </div>
+              <h3 class="item-title">Mughlai Egg Lapeta Gravy</h3>
+              <p class="item-description">Whole boiled eggs rolled in herb omelette wrap & bathed in creamy rich spiced cashew reduction.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹175</span>
+              <span class="portion-badge">4 Eggs + 2 Pav</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=300&q=80" 
+              alt="Mughlai Egg Lapeta Gravy" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 13 -->
+        <article class="item-card" data-title="Dhabha Style Butter Egg Curry" data-desc="Tawa-roasted whole boiled eggs slow cooked in fragrant highway dhaba-style red tomato-onion gravy with fresh cream.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Dhaba Style Butter Egg Curry</h3>
+              <p class="item-description">Pricked & fried boiled eggs slow simmered in silky tomato-onion makhani gravy with kasuri methi.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹140</span>
+              <span class="portion-badge">2 Eggs Gravy</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=300&q=80" 
+              alt="Dhaba Style Butter Egg Curry" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+      </div>
+
+      <!-- CATEGORY 4: QUICK BITES & BREADS -->
+      <div class="category-group" id="bites">
+        <div class="category-header">
+          <div class="cat-title-wrap">
+            <i class="fa-solid fa-bread-slice cat-icon"></i>
+            <h2 class="category-title">Breads & Quick Bites</h2>
+          </div>
+          <span class="cat-count">3 items</span>
+        </div>
+
+        <!-- Item 14 -->
+        <article class="item-card" data-title="Amul Butter Toasted Pav (Pair)" data-desc="Soft ladi pav generously slathered with Amul butter and roasted golden brown on tawa.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator veg-indicator"><span class="veg-dot"></span></span>
+                <span class="tag-bestseller">Add-on</span>
+              </div>
+              <h3 class="item-title">Amul Butter Toasted Pav (Pair)</h3>
+              <p class="item-description">Fluffy ladi pav crisp-toasted on iron griddle with premium salted Amul butter.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹25</span>
+              <span class="portion-badge">2 Pcs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80" 
+              alt="Amul Butter Toasted Pav" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 15 -->
+        <article class="item-card" data-title="Cheese Garlic Butter Pav" data-desc="Toasted pav stuffed with garlic chilli butter and melted cheese layer.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator veg-indicator"><span class="veg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Cheese Garlic Butter Pav (Pair)</h3>
+              <p class="item-description">Infused with roasted garlic chilli herb butter and stuffed with molten cheese.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹50</span>
+              <span class="portion-badge">2 Pcs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=300&q=80" 
+              alt="Cheese Garlic Butter Pav" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 16 -->
+        <article class="item-card" data-title="Masala Boiled Eggs (Plate)" data-desc="2 Hard boiled eggs cut in half, dusted with house chaat masala, pepper and lime.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator"><span class="egg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Simple Masala Boiled Eggs</h3>
+              <p class="item-description">2 Freshly boiled eggs served with rock salt, roasted cumin powder & tangy lemon.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹40</span>
+              <span class="portion-badge">2 Eggs</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=300&q=80" 
+              alt="Simple Masala Boiled Eggs" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+      </div>
+
+      <!-- CATEGORY 5: BEVERAGES -->
+      <div class="category-group" id="beverages">
+        <div class="category-header">
+          <div class="cat-title-wrap">
+            <i class="fa-solid fa-glass-water cat-icon"></i>
+            <h2 class="category-title">Beverages & Refreshments</h2>
+          </div>
+          <span class="cat-count">3 items</span>
+        </div>
+
+        <!-- Item 17 -->
+        <article class="item-card" data-title="Special Kadak Cutting Chai" data-desc="Freshly brewed ginger and cardamom milk tea simmered on slow flame.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator veg-indicator"><span class="veg-dot"></span></span>
+                <span class="tag-bestseller">Hot Pick</span>
+              </div>
+              <h3 class="item-title">Special Kadak Masala Chai</h3>
+              <p class="item-description">Strong Assam tea brewed with crushed fresh ginger, cardamom & full-cream milk.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹20</span>
+              <span class="portion-badge">1 Cup</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=300&q=80" 
+              alt="Special Kadak Masala Chai" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 18 -->
+        <article class="item-card" data-title="Masala Jeera Buttermilk (Chaas)" data-desc="Chilled spiced curd drink with roasted cumin, black salt, and fresh mint leaves.">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator veg-indicator"><span class="veg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Chilled Masala Buttermilk (Chaas)</h3>
+              <p class="item-description">Refreshing spiced buttermilk with roasted jeera, rock salt, ginger & fresh coriander.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹30</span>
+              <span class="portion-badge">250ml Glass</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=300&q=80" 
+              alt="Chilled Masala Buttermilk" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+
+        <!-- Item 19 -->
+        <article class="item-card" data-title="Chilled Soft Drink Can" data-desc="Ice cold Thums Up / Coke / Sprite (300ml can).">
+          <div class="item-info">
+            <div>
+              <div class="item-tags-row">
+                <span class="egg-veg-indicator veg-indicator"><span class="veg-dot"></span></span>
+              </div>
+              <h3 class="item-title">Cold Soft Drink (Thums Up / Coke)</h3>
+              <p class="item-description">Ice-cold 300ml can served with optional lime and ice.</p>
+            </div>
+            <div class="item-price-row">
+              <span class="price-current">₹40</span>
+              <span class="portion-badge">300ml Can</span>
+            </div>
+          </div>
+          <div class="item-media">
+            <img 
+              src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=300&q=80" 
+              alt="Cold Soft Drink" 
+              class="item-image"
+              loading="lazy"
+            >
+          </div>
+        </article>
+      </div>
+
+      <!-- No items found search placeholder -->
+      <div class="no-results" id="noResults">
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+        <h4>No matching egg dishes found</h4>
+        <p>Try searching for "Omelette", "Ghotala", or "Pav"</p>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================
+         FOOTER STALL INFO & POLICIES
+         ========================================================== -->
+    <footer class="stall-footer-info">
+      <div class="timing-card">
+        <h5><i class="fa-regular fa-clock"></i> Stall Operational Hours</h5>
+        <p>Monday to Sunday: <strong>5:00 PM – 11:30 PM</strong></p>
+        <p style="font-size: 0.7rem; color: var(--text-gray-400); margin-top: 3px;">Fresh batches cooked on live griddles upon order.</p>
+      </div>
+      
+      <p class="footer-note">
+        All dishes prepared using 100% Grade-A farm eggs and branded Amul butter/cheese. Prices are inclusive of all taxes. Custom spice levels available on request!
+      </p>
+      <p class="footer-note" style="margin-top: 8px; color: var(--text-gray-500);">
+        © 2026 The Egg Junction Stall. Crafted for food lovers.
+      </p>
+    </footer>
+
+    <!-- ==========================================================
+         STICKY FLOATING ACTION FOOTER (CALL & WHATSAPP)
+         ========================================================== -->
+    <div class="sticky-action-bar">
+      <div class="timing-strip">
+        <span><i class="fa-solid fa-circle-dot"></i> Live Kitchen Active</span>
+        <span><i class="fa-solid fa-motorcycle"></i> Takeaway & Dine-in</span>
+      </div>
+
+      <div class="action-buttons-group">
+        <!-- Call Button -->
+        <a href="tel:+919876543210" class="btn-action btn-call" id="btnCall" aria-label="Call Stall">
+          <i class="fa-solid fa-phone"></i>
+          <span>Call Stall</span>
+        </a>
+
+        <!-- Direct WhatsApp Order Button -->
+        <a 
+          href="https://wa.me/919876543210?text=Hi%20The%20Egg%20Junction!%20I%20would%20like%20to%20place%20an%20order%20from%20your%20menu.%20Please%20let%20me%20know%20the%20current%20waiting%20time." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-action btn-whatsapp" 
+          id="btnWhatsapp"
+          aria-label="Order on WhatsApp"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp Order</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Toast Notification -->
+    <div class="toast-msg" id="toastMsg">
+      <i class="fa-solid fa-circle-check" style="color: var(--accent-yellow);"></i>
+      <span id="toastText">Ready to serve!</span>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================
+       VANILLA JAVASCRIPT LOGIC (RELIABLE SCROLLER & SMART SEARCH)
+       ========================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('menuSearch');
+      const btnClearSearch = document.getElementById('btnClearSearch');
+      const searchStatus = document.getElementById('searchStatus');
+      const itemCards = document.querySelectorAll('.item-card');
+      const categoryGroups = document.querySelectorAll('.category-group');
+      const noResults = document.getElementById('noResults');
+      const catPills = document.querySelectorAll('.cat-pill');
+      const categoryNavWrapper = document.getElementById('categoryNavWrapper');
+      const specialOffer = document.getElementById('specialOffer');
+
+      // 1. SMART INSTANT SEARCH FILTER
+      function performSearch() {
+        const query = searchInput.value.toLowerCase().trim();
+        let totalVisible = 0;
+
+        if (query.length > 0) {
+          btnClearSearch.style.display = 'block';
+          if (specialOffer) specialOffer.style.display = 'none';
+        } else {
+          btnClearSearch.style.display = 'none';
+          searchStatus.style.display = 'none';
+          if (specialOffer) specialOffer.style.display = 'flex';
+        }
+
+        categoryGroups.forEach(group => {
+          let visibleInGroup = 0;
+          const cards = group.querySelectorAll('.item-card');
+
+          cards.forEach(card => {
+            const title = (card.getAttribute('data-title') || '').toLowerCase();
+            const desc = (card.getAttribute('data-desc') || '').toLowerCase();
+
+            if (title.includes(query) || desc.includes(query) || query === '') {
+              card.style.display = 'flex';
+              visibleInGroup++;
+              totalVisible++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Show/hide category group
+          if (visibleInGroup === 0 && query !== '') {
+            group.style.display = 'none';
+          } else {
+            group.style.display = 'block';
+          }
+        });
+
+        // Search feedback message
+        if (query !== '') {
+          searchStatus.style.display = 'block';
+          if (totalVisible > 0) {
+            searchStatus.textContent = `Found ${totalVisible} dish${totalVisible === 1 ? '' : 'es'}`;
+            noResults.style.display = 'none';
+          } else {
+            searchStatus.textContent = `No results for "${query}"`;
+            noResults.style.display = 'block';
+          }
+        } else {
+          noResults.style.display = 'none';
+        }
+      }
+
+      searchInput.addEventListener('input', performSearch);
+
+      // Clear search button trigger
+      btnClearSearch.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        performSearch();
+      });
+
+      // 2. WORKING CATEGORY SCROLLER & ACCURATE SMOOTH SCROLL
+      let isManualScroll = false;
+      let manualScrollTimer = null;
+
+      catPills.forEach(pill => {
+        pill.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('data-target');
+          const targetEl = document.getElementById(targetId);
+
+          if (!targetEl) return;
+
+          // Set active state on pill immediately
+          catPills.forEach(p => p.classList.remove('active'));
+          this.classList.add('active');
+
+          // Center the active pill horizontally
+          this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+          // Smooth scroll page to exact section offset
+          isManualScroll = true;
+          if (manualScrollTimer) clearTimeout(manualScrollTimer);
+
+          const navHeight = categoryNavWrapper.offsetHeight || 60;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight - 10;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          manualScrollTimer = setTimeout(() => {
+            isManualScroll = false;
+          }, 800);
+        });
+      });
+
+      // 3. SCROLLSPY TO SYNC ACTIVE CATEGORY PILL WITH SCROLL
+      window.addEventListener('scroll', () => {
+        if (isManualScroll) return;
+
+        const navHeight = categoryNavWrapper.offsetHeight || 60;
+        let currentTarget = '';
+
+        categoryGroups.forEach(group => {
+          if (group.style.display === 'none') return;
+          const groupTop = group.offsetTop - navHeight - 25;
+          if (window.pageYOffset >= groupTop) {
+            currentTarget = group.getAttribute('id');
+          }
+        });
+
+        if (currentTarget) {
+          catPills.forEach(pill => {
+            if (pill.getAttribute('data-target') === currentTarget) {
+              if (!pill.classList.contains('active')) {
+                catPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                pill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              }
+            }
+          });
+        }
+      }, { passive: true });
+
+      // 4. TOAST FEEDBACK ON ITEM CLICK
+      const toast = document.getElementById('toastMsg');
+      const toastText = document.getElementById('toastText');
+      let toastTimer = null;
+
+      itemCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const title = card.querySelector('.item-title').textContent;
+          const price = card.querySelector('.price-current').textContent;
+          
+          toastText.innerHTML = `Selected <strong>${title}</strong> (${price})`;
+          toast.classList.add('show');
+          
+          if (toastTimer) clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => {
+            toast.classList.remove('show');
+          }, 2400);
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

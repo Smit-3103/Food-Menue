@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Egg Table | Artisanal Street Delights & Menu</title>
+  <meta name="description" content="Artisanal street-style egg delicacies, loaded cheese omelettes, surti ghotala, and authentic tawa specials in a warm, modern dining experience.">
+
+  <!-- Google Fonts: Playfair Display (Editorial Serif) & Plus Jakarta Sans (Clean Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* ==========================================================
+       DESIGN SYSTEM & COLOR PALETTE (WARM CREAM & DEEP BOTANICAL)
+       ========================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-cream: #F8F5EE;
+      --bg-cream-card: #FFFFFF;
+      --bg-cream-alt: #F1ECE1;
+      --bg-golden: #E59819;
+      --bg-golden-deep: #D48408;
+
+      --text-dark: #1E3329;
+      --text-forest: #244636;
+      --text-body: #4A5568;
+      --text-muted: #8C968E;
+      --text-white: #FFFFFF;
+
+      --accent-green: #2D5A43;
+      --accent-gold: #D9822B;
+      --accent-border: #E8E2D5;
+      --accent-dot: #D5CDBD;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 9999px;
+
+      --shadow-subtle: 0 4px 20px rgba(30, 51, 41, 0.05);
+      --shadow-hover: 0 8px 24px rgba(30, 51, 41, 0.08);
+      --shadow-image: 0 10px 24px rgba(30, 51, 41, 0.12);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Page Container */
+    .page-wrapper {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      background-color: var(--bg-cream);
+      padding: 0 20px 80px;
+      position: relative;
+    }
+
+    /* ==========================================================
+       TOP NAVIGATION BAR (MOBILE SUITABLE)
+       ========================================================== */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(232, 226, 213, 0.8);
+      position: relative;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--text-forest);
+      color: var(--bg-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-forest);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-nav-call {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1.5px solid var(--text-forest);
+      color: var(--text-forest);
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-nav-call:hover, .btn-nav-call:active {
+      background-color: var(--text-forest);
+      color: var(--bg-cream);
+    }
+
+    /* Mobile Quick Categories Dropdown / Menu Bar */
+    .mobile-quick-nav {
+      display: none;
+      padding: 10px 0 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      white-space: nowrap;
+      gap: 8px;
+    }
+
+    .mobile-quick-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-cream-alt);
+      color: var(--text-forest);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--accent-border);
+    }
+
+    /* ==========================================================
+       HERO SECTION WITH SWIPABLE/FLEX PHOTO RIBBON
+       ========================================================== */
+    .hero-section {
+      text-align: center;
+      padding: 36px 0 24px;
+    }
+
+    .hero-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.85rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--text-forest);
+      line-height: 1.2;
+      letter-spacing: -0.6px;
+      max-width: 680px;
+      margin: 0 auto 28px;
+      padding: 0 8px;
+    }
+
+    /* Gallery Ribbon */
+    .gallery-ribbon {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1.5fr 1.15fr 1.3fr 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .gallery-thumb {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-image);
+      background-color: var(--bg-cream-alt);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .gallery-thumb:hover {
+      transform: translateY(-3px);
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb-1 { height: 130px; }
+    .thumb-2 { height: 160px; }
+    .thumb-hero { height: 210px; border-radius: var(--radius-xl); }
+    .thumb-4 { height: 150px; }
+    .thumb-5 { height: 175px; }
+    .thumb-6 { height: 130px; }
+
+    /* Divider */
+    .section-divider {
+      border: none;
+      border-top: 1px dashed var(--accent-border);
+      margin: 40px 0 32px;
+    }
+
+    /* ==========================================================
+       MENU SECTIONS (MOBILE OPTIMIZED ROWS WITH DOTTED LEADERS)
+       ========================================================== */
+    .menu-category-block {
+      padding: 16px 0 32px;
+      text-align: center;
+      scroll-margin-top: 20px;
+    }
+
+    .ornament-icon {
+      font-size: 1rem;
+      color: var(--text-forest);
+      margin-bottom: 6px;
+      display: inline-block;
+      opacity: 0.85;
+    }
+
+    .menu-category-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-forest);
+      margin-bottom: 26px;
+      letter-spacing: -0.3px;
+    }
+
+    /* 2-Column Grid on Tablet/Desktop, Clean 1-Column on Mobile */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 40px;
+      row-gap: 20px;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+
+    .menu-item-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--accent-dot);
+      transition: transform 0.2s ease;
+    }
+
+    .menu-item-row:hover {
+      transform: translateX(2px);
+    }
+
+    /* Food Image Thumbnail */
+    .item-thumb-box {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background-color: var(--bg-cream-alt);
+    }
+
+    .item-thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Item Texts */
+    .item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name-heading {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-subtitle {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Price */
+    .item-price-tag {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-forest);
+      flex-shrink: 0;
+      letter-spacing: -0.3px;
+    }
+
+    /* Action Button */
+    .btn-category-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--text-forest);
+      color: var(--bg-cream);
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(36, 70, 54, 0.2);
+    }
+
+    .btn-category-action:hover, .btn-category-action:active {
+      background-color: var(--text-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       "OUR CULTURE & CRAFT" SECTION
+       ========================================================== */
+    .culture-section {
+      text-align: center;
+      padding: 20px 0 36px;
+    }
+
+    .culture-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-forest);
+      margin-bottom: 24px;
+    }
+
+    .culture-ribbon {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1.4fr 1.1fr 1.3fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .culture-thumb {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-image);
+      background-color: var(--bg-cream-alt);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .culture-thumb:hover {
+      transform: translateY(-3px);
+    }
+
+    .culture-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .cult-1 { height: 130px; }
+    .cult-2 { height: 150px; }
+    .cult-hero { height: 200px; border-radius: var(--radius-xl); }
+    .cult-4 { height: 150px; }
+    .cult-5 { height: 180px; }
+    .cult-6 { height: 130px; }
+
+    /* ==========================================================
+       WARM GOLDEN TESTIMONIAL BANNER (MOBILE FRIENDLY)
+       ========================================================== */
+    .testimonial-banner {
+      background-color: var(--bg-golden);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      margin: 16px 0 44px;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 28px;
+      align-items: center;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(229, 152, 25, 0.24);
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(0.95rem, 2vw, 1.18rem);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      opacity: 0.95;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.35);
+      padding-bottom: 18px;
+    }
+
+    .customer-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .customer-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .customer-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .customer-name {
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .customer-sub {
+      font-size: 0.72rem;
+      opacity: 0.85;
+    }
+
+    .slider-arrows {
+      display: flex;
+      gap: 8px;
+    }
+
+    .arrow-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      border: none;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: background 0.2s ease;
+    }
+
+    .arrow-btn:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    /* Stacked Photos */
+    .testimonial-photo-stack {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .stack-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .stack-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sp-1 { width: 95px; height: 150px; opacity: 0.85; }
+    .sp-center { width: 125px; height: 185px; border-radius: var(--radius-xl); }
+    .sp-3 { width: 95px; height: 150px; opacity: 0.85; }
+
+    /* ==========================================================
+       MODERN 4-COLUMN FOOTER
+       ========================================================== */
+    .site-footer {
+      padding: 32px 0 24px;
+      border-top: 1px solid var(--accent-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 32px;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col ul li a, .footer-col ul li span {
+      text-decoration: none;
+      color: var(--text-body);
+      font-size: 0.8rem;
+      transition: color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .contact-item i {
+      color: var(--text-forest);
+      font-size: 0.85rem;
+      width: 16px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(232, 226, 213, 0.8);
+      padding-top: 20px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-bottom-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--text-dark);
+    }
+
+    /* ==========================================================
+       MOBILE-FIRST RESPONSIVE PERFECTION
+       ========================================================== */
+    @media (max-width: 820px) {
+      .gallery-ribbon, .culture-ribbon {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 4px 4px 14px;
+        gap: 12px;
+      }
+
+      .gallery-ribbon::-webkit-scrollbar,
+      .culture-ribbon::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-thumb, .culture-thumb {
+        scroll-snap-align: center;
+        width: 140px;
+        height: 170px !important;
+        border-radius: var(--radius-lg);
+      }
+
+      .thumb-hero, .cult-hero {
+        width: 170px;
+        border-radius: var(--radius-xl);
+      }
+
+      .testimonial-banner {
+        grid-template-columns: 1fr;
+        padding: 28px 20px;
+        gap: 24px;
+      }
+
+      .testimonial-photo-stack {
+        justify-content: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-wrapper {
+        padding: 0 16px 70px;
+      }
+
+      /* Show horizontal scrollable quick category pills under header */
+      .mobile-quick-nav {
+        display: flex;
+      }
+
+      .site-nav .nav-links {
+        display: none;
+      }
+
+      .brand-logo-text {
+        font-size: 1.15rem;
+      }
+
+      .btn-nav-call span {
+        display: inline;
+      }
+
+      .hero-heading {
+        margin-bottom: 20px;
+      }
+
+      /* Single Column Menu on Mobile */
+      .menu-grid {
+        grid-template-columns: 1fr;
+        row-gap: 14px;
+      }
+
+      .menu-item-row {
+        padding-bottom: 10px;
+      }
+
+      .item-name-heading {
+        font-size: 0.88rem;
+      }
+
+      .item-subtitle {
+        font-size: 0.72rem;
+      }
+
+      .item-price-tag {
+        font-size: 1.02rem;
+      }
+
+      .gallery-thumb, .culture-thumb {
+        width: 130px;
+        height: 155px !important;
+      }
+
+      .thumb-hero, .cult-hero {
+        width: 155px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ==========================================================
+         TOP NAVIGATION BAR
+         ========================================================== -->
+    <header>
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="#home" class="brand-logo-wrap">
+          <div class="brand-logo-icon">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <span class="brand-logo-text">The Egg Table</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#breakfast">Breakfast</a></li>
+          <li><a href="#lunch">Lunch</a></li>
+          <li><a href="#dinner">Dinner</a></li>
+          <li><a href="#culture">Our Story</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="tel:+919876543210" class="btn-nav-call">
+            <i class="fa-solid fa-phone"></i>
+            <span>(800) 222-4110</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mobile Fast-Scroll Pills -->
+      <div class="mobile-quick-nav" aria-label="Quick Category Jump">
+        <a href="#breakfast" class="mobile-nav-pill"><i class="fa-solid fa-mug-saucer"></i> Breakfast</a>
+        <a href="#lunch" class="mobile-nav-pill"><i class="fa-solid fa-bowl-rice"></i> Lunch Specials</a>
+        <a href="#dinner" class="mobile-nav-pill"><i class="fa-solid fa-plate-wheat"></i> Dinner Specials</a>
+        <a href="#culture" class="mobile-nav-pill"><i class="fa-solid fa-heart"></i> Our Story</a>
+      </div>
+    </header>
+
+    <!-- ==========================================================
+         HERO SECTION: DIVE INTO DELICIOUS MEAL DISHES
+         ========================================================== -->
+    <section class="hero-section" id="home">
+      <h1 class="hero-heading">Dive Into Delicious Egg Dishes</h1>
+
+      <!-- Gallery Ribbon (Smooth Horizontal Swipe on Mobile) -->
+      <div class="gallery-ribbon">
+        <div class="gallery-thumb thumb-1">
+          <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=400&q=80" alt="Loaded Omelette" loading="lazy">
+        </div>
+        <div class="gallery-thumb thumb-2">
+          <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80" alt="Cheese Omelette Slice" loading="lazy">
+        </div>
+        <div class="gallery-thumb thumb-hero">
+          <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80" alt="Street Style Egg Dish" loading="lazy">
+        </div>
+        <div class="gallery-thumb thumb-4">
+          <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=400&q=80" alt="Fresh Farm Boiled Eggs" loading="lazy">
+        </div>
+        <div class="gallery-thumb thumb-5">
+          <img src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?auto=format&fit=crop&w=400&q=80" alt="Sunny Side Up Feast" loading="lazy">
+        </div>
+        <div class="gallery-thumb thumb-6">
+          <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=400&q=80" alt="Double Egg Roll" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==========================================================
+         CATEGORY 1: BREAKFAST SPECIAL MENU
+         ========================================================== -->
+    <section class="menu-category-block" id="breakfast">
+      <div class="ornament-icon"><i class="fa-solid fa-clover"></i></div>
+      <h2 class="menu-category-title">Breakfast Special Menu</h2>
+
+      <div class="menu-grid">
+        <!-- Item 1 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=150&q=80" alt="Cheese Masala Omelette" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Cheese Burst Masala Omelette</h3>
+            <p class="item-subtitle">Double egg, molten cheese, butter pav</p>
+          </div>
+          <span class="item-price-tag">₹110</span>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=150&q=80" alt="Tadka Omelette" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Spicy Masala Tadka Omelette</h3>
+            <p class="item-subtitle">Desi ghee, green chillies, onions</p>
+          </div>
+          <span class="item-price-tag">₹80</span>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?auto=format&fit=crop&w=150&q=80" alt="Sunny Side Up" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Sunny Side Up (Double Half Fry)</h3>
+            <p class="item-subtitle">Runny golden yolks, black pepper, pav</p>
+          </div>
+          <span class="item-price-tag">₹70</span>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=150&q=80" alt="Spanish Herb Omelette" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Spanish Herb & Olive Omelette</h3>
+            <p class="item-subtitle">Bell peppers, olives, mozzarella pull</p>
+          </div>
+          <span class="item-price-tag">₹130</span>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=150&q=80" alt="Paneer Egg Volcano" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Paneer & Egg Volcano Omelette</h3>
+            <p class="item-subtitle">Shredded malai paneer, peri-peri drizzle</p>
+          </div>
+          <span class="item-price-tag">₹140</span>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80" alt="Butter Toasted Pav" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Amul Butter Toasted Pav (Pair)</h3>
+            <p class="item-subtitle">Griddle toasted soft ladi pav with butter</p>
+          </div>
+          <span class="item-price-tag">₹25</span>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=150&q=80" alt="Masala Boiled Eggs" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Simple Masala Boiled Eggs</h3>
+            <p class="item-subtitle">2 Farm eggs, chaat masala, rock salt</p>
+          </div>
+          <span class="item-price-tag">₹40</span>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=150&q=80" alt="Kadak Masala Chai" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Special Kadak Masala Chai</h3>
+            <p class="item-subtitle">Assam tea, fresh ginger, cardamom</p>
+          </div>
+          <span class="item-price-tag">₹20</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/919876543210?text=Hi!%20I%20would%20like%20to%20order%20Breakfast%20Specials." target="_blank" rel="noopener noreferrer" class="btn-category-action">
+        <span>Order Breakfast</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==========================================================
+         CATEGORY 2: LUNCH SPECIAL MENU
+         ========================================================== -->
+    <section class="menu-category-block" id="lunch">
+      <div class="ornament-icon"><i class="fa-solid fa-clover"></i></div>
+      <h2 class="menu-category-title">Lunch Special Menu</h2>
+
+      <div class="menu-grid">
+        <!-- Item 9 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=150&q=80" alt="Surti Egg Ghotala" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Authentic Surti Egg Ghotala</h3>
+            <p class="item-subtitle">Minced eggs, spicy curry, half fry, cheese</p>
+          </div>
+          <span class="item-price-tag">₹160</span>
+        </div>
+
+        <!-- Item 10 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=150&q=80" alt="Egg Kheema Masala" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Spicy Egg Kheema Masala</h3>
+            <p class="item-subtitle">Finely grated eggs, peas, roasted spices</p>
+          </div>
+          <span class="item-price-tag">₹130</span>
+        </div>
+
+        <!-- Item 11 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="Mughlai Lapeta" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Mughlai Egg Lapeta Gravy</h3>
+            <p class="item-subtitle">Eggs in herb omelette wrap, cashew gravy</p>
+          </div>
+          <span class="item-price-tag">₹175</span>
+        </div>
+
+        <!-- Item 12 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=150&q=80" alt="Dhaba Egg Curry" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Dhaba Style Butter Egg Curry</h3>
+            <p class="item-subtitle">Fried boiled eggs in rich tomato makhani</p>
+          </div>
+          <span class="item-price-tag">₹140</span>
+        </div>
+
+        <!-- Item 13 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=150&q=80" alt="Kolkata Egg Roll" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Kolkata Double Egg Kathi Roll</h3>
+            <p class="item-subtitle">Crisp paratha, double egg, mint sauce</p>
+          </div>
+          <span class="item-price-tag">₹95</span>
+        </div>
+
+        <!-- Item 14 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=150&q=80" alt="Cheese Garlic Pav" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Cheese Garlic Butter Pav (Pair)</h3>
+            <p class="item-subtitle">Stuffed with garlic chilli herb butter</p>
+          </div>
+          <span class="item-price-tag">₹50</span>
+        </div>
+
+        <!-- Item 15 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=150&q=80" alt="Crispy Egg 65" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Crispy Andhra Egg 65</h3>
+            <p class="item-subtitle">Batter-crisped egg bites, curry leaves</p>
+          </div>
+          <span class="item-price-tag">₹120</span>
+        </div>
+
+        <!-- Item 16 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80" alt="Masala Chaas" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Chilled Masala Buttermilk (Chaas)</h3>
+            <p class="item-subtitle">Roasted cumin, mint, ginger & rock salt</p>
+          </div>
+          <span class="item-price-tag">₹30</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/919876543210?text=Hi!%20I%20would%20like%20to%20order%20Lunch%20Specials." target="_blank" rel="noopener noreferrer" class="btn-category-action">
+        <span>Order Lunch</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==========================================================
+         CATEGORY 3: DINNER SPECIAL MENU
+         ========================================================== -->
+    <section class="menu-category-block" id="dinner">
+      <div class="ornament-icon"><i class="fa-solid fa-clover"></i></div>
+      <h2 class="menu-category-title">Dinner Special Menu</h2>
+
+      <div class="menu-grid">
+        <!-- Item 17 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=150&q=80" alt="Cheese Ghotala Fest" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Royal Cheese Burst Ghotala</h3>
+            <p class="item-subtitle">Extra cheese blend, 3 eggs, 2 butter pav</p>
+          </div>
+          <span class="item-price-tag">₹180</span>
+        </div>
+
+        <!-- Item 18 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=150&q=80" alt="Tawa Boiled Fry" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Tawa Boiled Egg Masala Fry</h3>
+            <p class="item-subtitle">Iron sizzled sliced eggs with onion tomato</p>
+          </div>
+          <span class="item-price-tag">₹90</span>
+        </div>
+
+        <!-- Item 19 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=150&q=80" alt="Egg Koliwada" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Mumbai Egg Koliwada Bites</h3>
+            <p class="item-subtitle">Crispy spiced egg wedges, mint dip</p>
+          </div>
+          <span class="item-price-tag">₹110</span>
+        </div>
+
+        <!-- Item 20 -->
+        <div class="menu-item-row">
+          <div class="item-thumb-box">
+            <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=150&q=80" alt="Chilled Soda" loading="lazy">
+          </div>
+          <div class="item-content">
+            <h3 class="item-name-heading">Cold Soft Drink (Thums Up / Coke)</h3>
+            <p class="item-subtitle">Chilled 300ml can with fresh lemon</p>
+          </div>
+          <span class="item-price-tag">₹40</span>
+        </div>
+      </div>
+
+      <a href="https://wa.me/919876543210?text=Hi!%20I%20would%20like%20to%20book%20a%20table%20or%20order%20Dinner." target="_blank" rel="noopener noreferrer" class="btn-category-action">
+        <span>Book a Table</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==========================================================
+         "OUR CULTURE" PHOTO RIBBON SECTION
+         ========================================================== -->
+    <section class="culture-section" id="culture">
+      <h2 class="culture-title">Our Culture & Craft</h2>
+
+      <div class="culture-ribbon">
+        <div class="culture-thumb cult-1">
+          <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" alt="Chef Preparing Food" loading="lazy">
+        </div>
+        <div class="culture-thumb cult-2">
+          <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=400&q=80" alt="Fresh Griddle Delicacies" loading="lazy">
+        </div>
+        <div class="culture-thumb cult-hero">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Live Cooking Passion" loading="lazy">
+        </div>
+        <div class="culture-thumb cult-4">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80" alt="Table Dining" loading="lazy">
+        </div>
+        <div class="culture-thumb cult-5">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" alt="Warm Stall Ambiance" loading="lazy">
+        </div>
+        <div class="culture-thumb cult-6">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=400&q=80" alt="Master Chef" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         WARM GOLDEN TESTIMONIAL BANNER
+         ========================================================== -->
+    <section class="testimonial-banner">
+      <div class="testimonial-content">
+        <p class="testimonial-quote">
+          "I love The Egg Table because it lets me share the joy of authentic street food with pure comfort. Every dish is cooked fresh right in front of us, and the Surti Ghotala and cheese omelettes are extraordinary!"
+        </p>
+        <div class="customer-info-row">
+          <div class="customer-profile">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Brooklyn Simmons" class="customer-avatar" loading="lazy">
+            <div>
+              <h4 class="customer-name">Brooklyn Simmons</h4>
+              <p class="customer-sub">Local Food Critic</p>
+            </div>
+          </div>
+          <div class="slider-arrows">
+            <button class="arrow-btn" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="arrow-btn" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlapping Stacked Rounded Photos -->
+      <div class="testimonial-photo-stack">
+        <div class="stack-photo sp-1">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=300&q=80" alt="Dining Vibe" loading="lazy">
+        </div>
+        <div class="stack-photo sp-center">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Happy Guest" loading="lazy">
+        </div>
+        <div class="stack-photo sp-3">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=300&q=80" alt="Kitchen Craft" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         MODERN 4-COLUMN FOOTER
+         ========================================================== -->
+    <footer class="site-footer" id="contact">
+      <div class="footer-grid">
+        <!-- Col 1: Contact -->
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li>
+              <a href="tel:+919876543210" class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <span>(800) 222-4110</span>
+              </a>
+            </li>
+            <li>
+              <span class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>1522 Food Street, MG Market Circle</span>
+              </span>
+            </li>
+            <li>
+              <a href="mailto:hello@theeggtable.com" class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <span>hello@theeggtable.com</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Navigate -->
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#breakfast">Menu</a></li>
+            <li><a href="#culture">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#dinner">Book Now</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Menu -->
+        <div class="footer-col">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="#breakfast">Breakfast Specials</a></li>
+            <li><a href="#lunch">Lunch Specials</a></li>
+            <li><a href="#dinner">Dinner Specials</a></li>
+            <li><a href="#lunch">Breads & Extras</a></li>
+            <li><a href="#breakfast">Beverages</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Follow Us -->
+        <div class="footer-col">
+          <h5>Follow Us</h5>
+          <ul>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 The Egg Table. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">License</a>
+          <a href="#">Changelog</a>
+          <a href="#">Style Guide</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
